@@ -1,0 +1,150 @@
+SISTEMA INTELIGENTE DE ILUMINACAO AUTOMATICA
+UTILIZANDO ARDUINO E ARQUITETURA ARM
+
+[Seu Nome] — [Instituicao] — [Ano]
+Disciplina: Programacao de Microprocessadores
+e Microcontroladores — Prof. Felipe Douglas
+
+======================================================
+RESUMO
+======================================================
+Este artigo descreve o desenvolvimento de um sistema
+de iluminacao automatica com Arduino, utilizando
+sensor LDR para medir luminosidade e algoritmo de
+decisao adaptativa como forma de Inteligencia
+Artificial embarcada. O sistema liga ou desliga uma
+lampada automaticamente conforme o nivel de luz do
+ambiente. O projeto foi simulado em ambiente ARM
+via Wokwi e programado em linguagem C/C++.
+
+Palavras-chave: Arduino, ARM, LDR, iluminacao
+automatica, sistemas embarcados, inteligencia
+artificial.
+
+======================================================
+1. INTRODUCAO
+======================================================
+A automacao residencial e uma area em crescimento
+que une eletronica, programacao e inteligencia
+artificial para tornar ambientes mais eficientes.
+Um dos exemplos mais simples e eficazes e o
+controle automatico de iluminacao, que economiza
+energia ao ligar luzes apenas quando necessario.
+
+Este trabalho responde a seguinte questao:
+de que forma conceitos introdutorios de IA podem
+ser aplicados em sistemas embarcados com Arduino
+e arquitetura ARM para automatizar a iluminacao?
+
+======================================================
+2. REFERENCIAL TEORICO
+======================================================
+2.1 Sistemas Embarcados
+Sistemas embarcados sao computadores dedicados a
+uma funcao especifica, com recursos limitados de
+processamento e memoria. O Arduino e uma plataforma
+de prototipagem rapida muito utilizada nesse contexto.
+
+2.2 Arquitetura ARM
+A arquitetura ARM (Advanced RISC Machine) e baseada
+no conjunto de instrucoes RISC, com pipeline eficiente
+e baixo consumo de energia. O Arduino Due usa o
+processador SAM3X8E (ARM Cortex-M3, 32 bits, 84 MHz),
+enquanto o Arduino UNO usa AVR de 8 bits.
+
+2.3 Sensor LDR
+O LDR (Light Dependent Resistor) e um resistor que
+varia sua resistencia conforme a luminosidade. Em
+baixa luz, a resistencia aumenta; com luz intensa,
+diminui. Conectado a um divisor de tensao, gera
+valores de 0 a 1023 no pino analogico do Arduino.
+
+2.4 Inteligencia Artificial Embarcada
+Neste projeto, a IA e implementada como um
+algoritmo de decisao com histerese: o sistema
+decide ligar ou desligar a lampada com base na
+media movel das leituras do sensor. A histerese
+evita oscilacoes quando a luz esta proximo ao
+limiar — comportamento tipico de sistemas
+especialistas embarcados.
+
+======================================================
+3. METODOLOGIA
+======================================================
+1. Levantamento bibliografico sobre LDR e Arduino
+2. Definicao do projeto: iluminacao automatica
+3. Desenvolvimento do algoritmo em linguagem C/C++
+4. Simulacao no Wokwi (ambiente ARM)
+5. Realizacao de testes com diferentes niveis de luz
+6. Documentacao dos resultados
+7. Publicacao no GitHub
+
+======================================================
+4. DESENVOLVIMENTO
+======================================================
+O sistema e composto por:
+- Arduino UNO (simulado como ARM no Wokwi/Due)
+- Sensor LDR ligado ao pino A0
+- Resistor de 10k ohm (divisor de tensao)
+- LED (representando a lampada) no pino 9
+
+Logica de funcionamento:
+- O sensor e lido a cada 500ms
+- Uma media movel dos ultimos 10 valores suaviza
+  ruidos do sensor
+- Se media < 470 e lampada desligada: LIGA
+- Se media > 530 e lampada ligada: DESLIGA
+- Zona intermediaria (470-530): mantem estado
+
+Diagrama de fluxo:
+  LEITURA LDR -> CALCULA MEDIA -> TOMA DECISAO
+       ^                               |
+       |_______________________________|
+
+======================================================
+5. RESULTADOS
+======================================================
+O sistema respondeu corretamente nos testes:
+
+Cenario 1 (noite/escuro, LDR ~80):
+  Media: 80 < 470 -> Lampada LIGADA
+
+Cenario 2 (dia nublado, LDR ~300):
+  Media: 300 < 470 -> Lampada LIGADA
+
+Cenario 3 (dia claro, LDR ~700):
+  Media: 700 > 530 -> Lampada DESLIGADA
+
+A histerese evitou que a lampada ficasse
+oscilando quando LDR estava entre 470 e 530.
+
+======================================================
+6. CONCLUSAO
+======================================================
+O projeto demonstrou como um sensor simples e
+um algoritmo de decisao em C podem formar um
+sistema inteligente funcional. A media movel e
+a histerese sao tecnicas de IA embarcada que
+melhoram a estabilidade do sistema. A simulacao
+ARM no Wokwi confirmou o funcionamento correto.
+
+======================================================
+7. REFERENCIAS
+======================================================
+BANZI, M. Getting Started with Arduino.
+O'Reilly Media, 2011.
+
+ARM. Cortex-M3 Technical Reference Manual. 2023.
+Disponivel em: developer.arm.com
+
+WOKWI. Simulador Arduino e ARM online.
+Disponivel em: wokwi.com
+
+MALVINO, A. Principios de Eletronica.
+McGraw-Hill, 2016.
+
+RUSSELL, S.; NORVIG, P. Artificial Intelligence:
+A Modern Approach. Prentice Hall, 2020.
+
+ARDUINO. Documentacao oficial: analogRead().
+Disponivel em: arduino.cc/reference
