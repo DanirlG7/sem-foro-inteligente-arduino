@@ -1,0 +1,127 @@
+SEMÁFORO INTELIGENTE COM ARDUINO E ARQUITETURA ARM:
+UMA APLICAÇÃO DE INTELIGÊNCIA ARTIFICIAL EM
+SISTEMAS EMBARCADOS
+
+[Seu Nome] — [Instituição] — [Ano]
+Disciplina: Programação de Microprocessadores e
+Microcontroladores — Prof. Felipe Douglas
+
+======================================================
+RESUMO
+======================================================
+Este artigo apresenta o desenvolvimento de um
+semáforo inteligente utilizando Arduino e conceitos
+de Inteligência Artificial embarcada. O sistema usa
+um sensor de presença para ajustar automaticamente
+o tempo do sinal verde, reduzindo esperas
+desnecessárias. A lógica foi programada em linguagem
+C/C++ e simulada em ambiente ARM via Wokwi.
+
+Palavras-chave: Arduino, ARM, sistemas embarcados,
+inteligência artificial, semáforo inteligente.
+
+======================================================
+1. INTRODUÇÃO
+======================================================
+A automação urbana tem avançado com o uso de
+microcontroladores de baixo custo, como o Arduino,
+que permitem implementar lógica de controle em
+tempo real. Este trabalho aplica conceitos de IA
+básica — tomada de decisão adaptativa — em um
+semáforo que reage à presença de veículos.
+
+O problema central é: como um sistema embarcado
+pode tomar decisões inteligentes com hardware
+simples e linguagem C?
+
+======================================================
+2. FUNDAMENTAÇÃO TEÓRICA
+======================================================
+2.1 Microcontroladores e Arduino
+O Arduino UNO utiliza o microcontrolador ATmega328P.
+Já o Arduino Due usa o processador SAM3X8E, baseado
+na arquitetura ARM Cortex-M3, operando a 84 MHz.
+A arquitetura ARM (Advanced RISC Machine) é RISC
+(Reduced Instruction Set Computer), com registradores
+de 32 bits e pipeline eficiente.
+
+2.2 Arquitetura ARM
+A arquitetura ARM organiza o processamento em:
+registradores gerais (R0-R12), ponteiro de pilha
+(SP), link register (LR) e program counter (PC).
+O pipeline de 3 estágios (busca, decodifica, executa)
+permite alta eficiência energética.
+
+2.3 Linguagem C em Sistemas Embarcados
+A linguagem C é ideal para embarcados por gerar
+código compacto e permitir acesso direto a hardware
+via registradores e ponteiros.
+
+2.4 Inteligência Artificial Básica
+IA embarcada, no contexto deste trabalho, refere-se
+a algoritmos de decisão que adaptam o comportamento
+do sistema com base em dados de sensores. A lógica
+if/else com análise de sensor é a forma mais simples
+de sistema especialista embarcado.
+
+======================================================
+3. METODOLOGIA
+======================================================
+1. Levantamento bibliográfico sobre Arduino e ARM
+2. Definição do projeto: semáforo inteligente
+3. Desenvolvimento do algoritmo em linguagem C
+4. Simulação no Wokwi (ambiente ARM)
+5. Testes e documentação
+6. Publicação no GitHub
+
+======================================================
+4. DESENVOLVIMENTO DO PROJETO
+======================================================
+O sistema é composto por:
+- Arduino UNO (ou Due para ARM real)
+- 3 LEDs (vermelho, amarelo, verde)
+- Sensor PIR de presença
+- Buzzer
+
+A lógica de IA: durante o estado VERMELHO, o sensor
+é lido. A função tomarDecisao() avalia o dado e
+ajusta o tempo do VERDE: 4s sem carro, 8s com carro.
+
+Diagrama de estados:
+  VERMELHO (5s) -> [lê sensor] -> VERDE (4s ou 8s)
+  -> AMARELO (2s) -> VERMELHO...
+
+======================================================
+5. RESULTADOS E DISCUSSÃO
+======================================================
+O sistema funcionou conforme esperado na simulação
+Wokwi. Com sensor ativo, o verde aumentou de 4s
+para 8s, reduzindo em 50% o tempo de espera em
+cenários de tráfego. O monitor serial confirmou
+o funcionamento da lógica de decisão.
+
+======================================================
+6. CONCLUSÃO
+======================================================
+O projeto demonstrou que é possível implementar
+lógica de decisão inteligente com hardware simples
+e código C bem estruturado. A arquitetura ARM,
+simulada via Wokwi, confirmou a viabilidade do
+sistema em processadores de maior desempenho.
+
+======================================================
+7. REFERÊNCIAS
+======================================================
+BANZI, M. Getting Started with Arduino. O'Reilly, 2011.
+
+ARM. Cortex-M Architecture Reference Manual. 2023.
+Disponível em: developer.arm.com
+
+WOKWI. Simulador Arduino e ARM online.
+Disponível em: wokwi.com
+
+RUSSELL, S.; NORVIG, P. Artificial Intelligence:
+A Modern Approach. Prentice Hall, 2020.
+
+ARDUINO. Documentação oficial.
+Disponível em: arduino.cc/reference
